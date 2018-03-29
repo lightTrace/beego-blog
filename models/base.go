@@ -1,8 +1,8 @@
 package models
 
 import (
-	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
+	"github.com/astaxie/beego"
 )
 
 func Init() {
@@ -16,10 +16,11 @@ func Init() {
 	}
 	dsn := dbuser + ":" + dbpassword + "@tcp(" + dbhost + ":" + dbport + ")/" + dbname + "?charset=utf8&loc=Asia%2FShanghai"
 	orm.RegisterDataBase("default", "mysql", dsn)
-	orm.RegisterModel(new(User))
+	orm.RegisterModel(new(User), new(Category),new(Post), new(Config), new(Comment))
 }
 
 //返回带前缀的表名
 func TableName(str string) string {
 	return beego.AppConfig.String("dbprefix") + str
 }
+
